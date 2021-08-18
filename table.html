@@ -1,0 +1,209 @@
+<html>
+
+<head>
+
+<title>Onclick increase Table Rows</title>
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style>
+    body{
+        padding: 10px;
+    }
+
+    #userTable {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #userTable td, #customers th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #userTbale tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #userTable tr:hover {background-color: #ddd;}
+    
+    #userTable th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="cid">
+
+<div class="content" style="margin-top: 20px">
+
+<!-- <div class="container"> -->
+
+<!-- <div class="form h-100"> -->
+
+<form class="" method="post" id="contactForm" name="contactForm" onsubmit="getLogonNames" ></form>
+
+    <table id="userTable">
+
+        <tr>
+
+            <th>First Name</th>
+
+            <th>Last Name</th>
+
+            <th>Email</th>
+
+            <th>Logon Name</th>
+
+            <th>Password</th>
+
+            <th>Administrative Privilages</th>
+            
+            <th>Verfied</th>
+
+        </tr>
+
+    </table>
+
+    <table>
+
+        <tr>
+
+            <td><input type="button" value="Add Row" onclick="addRows()" /></td>
+
+            <td><input type="button" value="Delete Row" onclick="deleteRows()" /></td>
+
+            <td><input type="submit" value="Submit" onclick="getLogonNames()"/></td>
+
+        </tr>
+
+    </table>
+
+</form>
+
+<!-- </div> -->
+
+<!-- </div> -->
+
+</div>
+<script type="text/javascript">
+
+    function getLogonNames(){
+        console.log("form submit")
+        var userTable = document.getElementById('userTable');
+        var rowCount = userTable.rows.length;
+        for(let i=1;i<rowCount;i++){
+            console.log(userTable.rows[i].cells[3].childNodes[0].value)
+        }
+
+    }
+
+    function addRows(){
+        //Get Table by ID
+        var userTable = document.getElementById('userTable');
+        let row=userTable.insertRow(-1)
+        
+        let firstName=document.createElement('input')
+        let cellFirstName=row.insertCell(0)
+        cellFirstName.appendChild(firstName)
+    
+        let lastName=document.createElement('input')
+        let cellLastName=row.insertCell(1)
+        cellLastName.appendChild(lastName)
+    
+        let email=document.createElement('input')
+        let cellEmail=row.insertCell(2)
+        cellEmail.appendChild(email)
+    
+        let logonName=document.createElement('input')
+        let cellLogonName=row.insertCell(3)
+        cellLogonName.appendChild(logonName)
+    
+        let passInput=document.createElement('input')
+        let passButton=document.createElement('button')
+        passButton.textContent="genPass"
+    
+        passButton.onclick=function(){
+            passInput.value=generatePassword()
+        }
+    
+        
+    
+        let cellPassword=row.insertCell(4)
+        cellPassword.appendChild(passInput)
+        cellPassword.appendChild(passButton)
+        console.log(userTable.rows[0].cells.length)
+        console.log(userTable.rows.length)
+        console.log(userTable.rows[2])
+    
+        lastName.onkeyup=function(){
+            console.log("change")
+            if(firstName.value!=''){
+                let cid=document.getElementById('cid').value
+                logonName.value=cid+"-"+firstName.value+lastName.value.charAt(0)
+            }
+        }
+
+        firstName.onkeyup=function(){
+            console.log("change")
+            if(firstName.value!=''){
+                let cid=document.getElementById('cid').value
+                logonName.value=cid+"-"+firstName.value+lastName.value.charAt(0)
+            }
+        }
+
+        let selectprivilege=document.createElement('select')
+        let yesOption=document.createElement('option')
+        yesOption.text="Yes"
+        let noOption=document.createElement('option')
+        noOption.text="No"
+        selectprivilege.add(yesOption)
+        selectprivilege.add(noOption)
+        let cellRadio=row.insertCell(5)
+        cellRadio.appendChild(selectprivilege)
+    }
+    addRows()
+    
+    function generatePassword(){
+        const alphabets=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        const num=['1','2','3','4','5','6','7','8','9','0']
+        const special=['&','@','#','%','^','*']
+     
+        let pass=''
+        for(let i=0;i<3;i++){
+            pass+=alphabets[Math.floor(Math.random()*25)]
+            pass+=num[Math.floor(Math.random()*9)]
+            pass+=special[Math.floor(Math.random()*5)]
+        }
+        console.log(pass);
+        return pass
+    }
+    
+    function deleteRows(){
+    
+        var table = document.getElementById('userTable');
+    
+        var rowCount = table.rows.length;
+    
+        if(rowCount > '2'){
+    
+            var row = table.deleteRow(rowCount-1);
+    
+            rowCount--;
+    
+        }
+        else{
+            alert('There should be atleast one row');
+        }
+    }
+    
+    </script>
+</body>
+
+</html>
+

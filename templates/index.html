@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+  <head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='css/style.css') }}">
+  
+
+    <title>Automation form</title>
+    <style>
+      body{
+          /* padding: 10px; */
+      }
+  
+      .table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      .table td, #customers th {
+        border: 1px solid #ddd;
+        padding: 8px;
+      }
+      
+      .table tr:nth-child(even){background-color: #f2f2f2;}
+      
+      .table tr:hover {background-color: #ddd;}
+      
+      .table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+      }
+      </style>
+
+
+
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="">
+      <div class="row align-items-stretch no-gutters contact-wrap">
+        <div class="">
+          <div class="form h-100">
+            <h3>Fill Form</h3>
+            <form class="mb-5" method="post" id="contactForm" name="contactForm">
+                <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="" class="col-form-label">Client ID</label>
+                      
+                      <input type="text" class="form-control" name="client-id" id="client-id" placeholder="Enter Client ID">
+                      <!-- <input type="text" class="form-control" name="client-id" id="client-id" placeholder="Enter Client ID"> -->
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12 form-group mb-3">
+                        <label for="budget" class="col-form-label">Type of AD</label>
+                        <select class="custom-select" id="type-ad" name="type-ad">
+          <option selected>Select..</option>
+          <option value="shared">Shared</option>
+          
+        </select>
+                      </div>
+                    </div>
+<!-- Field Added for Testing -->
+
+<!-- Field Added for Testing -->
+<div class="row">  
+  <div class="col-md-12 form-group mb-3">
+  <label for="" style="font-size:20px;color:red" class="col-form-label">User creation</label>
+</div>
+</div>
+<div class="content" >
+
+  <!-- <div class="container"> -->
+  
+  <!-- <div class="form h-100"> -->
+  
+  <!-- <form class="" method="post" id="contactForm" name="contactForm" ></form> -->
+  
+      <table id="userTable" class="table">
+  
+          <tr>
+  
+              <th>First Name</th>
+  
+              <th>Last Name</th>
+  
+              <th>Email</th>
+  
+              <th>Logon Name</th>
+  
+              <th>Password</th>
+  
+              <th>Administrative Privilages</th>
+              
+              <th>Verfied</th>
+  
+          </tr>
+  
+      </table>
+  
+      <table>
+  
+          <tr>
+  
+              <td><input type="button" value="Add Row" onclick="addUserRows()" /></td>
+  
+              <td><input type="button" value="Delete Row" onclick="deleteUserRows()" /></td>
+  
+              <td><input type="button" value="check and Save" onclick="getLogonNames()"/></td>
+  
+          </tr>
+  
+      </table>
+  
+  <!-- </form> -->
+  
+  <!-- </div> -->
+  
+  <!-- </div> -->
+  
+  </div>
+
+
+
+<!-- User creation-->
+
+
+<div class="row">  
+  <div class="col-md-12 form-group mb-3">
+  <label for="" style="font-size:20px;color:red" class="col-form-label">Machine details</label>
+</div>
+</div>
+
+              <div id="row22">  </div>
+              <br>
+              
+
+
+              
+          
+                <table id="machineTable" class="table">
+  
+                  <tr>
+          
+                      <th>Machine Name</th>
+          
+                      <th>Type of OS</th>
+          
+                      <th>Datacenter</th>
+          
+                      <th>vCPU</th>
+          
+                      <th>Ram</th>
+          
+                      <th>AdditionStorage</th>
+                      
+          
+                  </tr>
+          
+              </table>
+          
+              <table>
+          
+                  <tr>
+          
+                      <td><input type="button" value="Add Row" onclick="addMachineRows()" /></td>
+          
+                      <td><input type="button" value="Delete Row" onclick="deleteMachineRows()" /></td>
+              
+                  </tr>
+          
+              </table>
+<!-- Machine Details -->
+
+                
+
+
+
+                
+                  
+    
+                   
+                    <br>
+                
+                    
+                      <!-- Delivery group -->
+                    
+                      <div class="row">  
+                          <div class="col-md-12 form-group mb-3">
+                          <label for="" style="font-size:20px;color:red" class="col-form-label">Delivery Group</label>
+                      </div>
+                      </div>
+      
+                      <table id="deliveryGroupTable" class="table">
+  
+                        <tr>
+                
+                            <th>Delivery Group</th>
+                
+                            <th>Machine Hostname</th>
+                
+                            <th>Datacenter</th>
+                
+                            <th>Users</th>
+                
+                            <th>Restart Policy</th>
+                
+                            <th>Restart Day</th>
+                            
+                            <th>Restart Time</th>
+                
+                        </tr>
+                
+                    </table>
+                
+                    <table>
+                
+                        <tr>
+                
+                            <td><input type="button" value="Add Row" onclick="addDeliveryGroups()" /></td>
+                
+                            <td><input type="button" value="Delete Row" onclick="deleteDeliveryGroupRows()" /></td>
+                    
+                        </tr>
+                
+                    </table>
+      
+                      <div class="row">
+                        
+                          
+                    <!-- <div class="col-md-4 form-group mb-3">
+                        <label for="" class="col-form-label">Delivery Group</label>
+                        <input type="text" class="form-control" name="delivery-group" id="delivery-group" placeholder="Enter name">
+                      </div> -->
+                      <!-- <div class="col-md-4 form-group mb-3">
+                        <label for="" class="col-form-label">Machine Hostname</label>
+                        <input type="text" class="form-control" name="machine-hostname" id="machine-hostname" placeholder="Enter name">
+                        
+                      
+                      </div> -->
+                          <!-- <div class="col-md-4 form-group mb-3">
+                              <label for="" class="col-form-label">Datacenter</label>
+                              <select class="custom-select" id="datacenter" name="datacenter">
+                                  <option selected>Select..</option>
+                                  <option value="US">US</option>
+                                  <option value="Singapore">Singapore</option>
+                                  
+                                  
+                                </select>
+                            </div> -->
+                        </div>
+                        <div class="row">
+                            
+                            <!-- <div class="col-md-6 form-group mb-3">
+                                <label for="" class="col-form-label">Users</label>
+                                <input type="text" class="form-control" name="users" id="users" placeholder="Enter users">
+                              </div> -->
+          
+                              <!-- <div class="col-md-6 form-group mb-3">
+                                  <label for="" class="col-form-label">Restart Policy</label>
+                                  <select class="custom-select" id="restart-policy" name="restart-policy">
+                                      <option selected>Select..</option>
+                                      <option value="Daily">Daily</option>
+                                      <option value="Weekly">Weekly</option>
+                                      <option value="Monthly">Monthly</option>
+                                      
+                                      
+                                    </select>
+                                </div> -->
+                            
+                          </div>
+                          <div class="row">
+                            
+                              <!-- <div class="col-md-6 form-group mb-3">
+                                  <label for="" class="col-form-label">Restart day</label>
+                                  <select class="custom-select" id="restart-day" name="restart-day">
+                                      
+
+                                      
+                                      
+                                    </select>
+                                </div> -->
+            
+                                <!-- <div class="col-md-6 form-group mb-3">
+                                    <label for="" class="col-form-label">Restart Time</label>
+                                    <input type="time" class="form-control" name="restart-time" id="restart-time" placeholder="Select..">
+                                  </div> -->
+                              
+                            </div>
+          
+                          <div id="row26">  </div>
+                          <br>
+                          
+            
+            
+                          
+                          <!-- <div class="d-flex flex-row-reverse">
+                              <div class="p-2">
+                                  <button onclick = "removerow()"  type="button" class="btn btn-warning">remove row</button>
+            
+                              </div>
+                              <div class="p-2">
+                                  <button onclick = "addrow()" type="button" class="btn btn-success">Add row</button>
+                              </div>
+                              
+                              
+                            </div> -->
+                          
+                          
+      
+
+            <br>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                    <button type="submit" class="btn btn-danger">Submit</button>
+                  
+                </div>
+              </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    
+    
+
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+
+      
+  
+
+  </body>
+</html>
